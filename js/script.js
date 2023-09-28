@@ -1,15 +1,25 @@
-const swiper = new Swiper('.swiper', {
-  //オプションの設定
-  loop: true, //最後までスライドしたら最初の画像に戻る
+$(function() {
+$('#back a').on('click', function(event){
+  // #back内のaタグがクリックされたときの処理
+  //$('.セレクタ名').on('click', function(event) {
+  //イベント発生時に行われる処理
+  //今回は、<span id="back">の<a href="#">がクリックされたとき、下記の処理が行われるという意味
+  //on()メソッドは、クリック後に複数のイベントが行われるようにしたいので、第1引数にイベント名のclick、第2引数に関数を指定しています。
+  //function(event)のeventはイベントオブジェクトというもので、今回はclickイベントが発生した際の様々な情報をeventという名前の引数に渡されます。
+  //ここからクリックされたときに行われる処理
+    $('body, html').animate({
+      scrollTop:0
+    }, 800);
+    event.preventDefault();
+  });
+  //ここまで
+  //animate() は、アニメーション効果を設定するjQueryの関数です。HTML要素のCSSプロパティを変化させることで動きを設定します。
+  //$('セレクタ名').animate({
+  //変化対象のプロパティ名:変化値
+  //}, アニメーションの動作時間);
 
-  //ページネーション表示の設定
-  pagination: {
-    el: '.swiper-pagination', //ページネーションの要素
-  },
-
-  //ナビゲーションボタン（矢印）表示の設定
-  navigation: {
-    nextEl: '.swiper-button-next', //「次へボタン」要素の指定
-    prevEl: '.swiper-button-prev', //「前へボタン」要素の指定
-  }
+  //scrollTop は、スクロール位置を取得できるメソッドです。
+  //アニメーションの動作時間を「800」で指定しているので、「800ミリ秒間（0.8秒間）かけてページの最上部まで移動する」の意味になります。
+  //ページ全体に対して処理を実行したいので、セレクタには、$('body, html')が設定されています。
+  //event.preventDefault(); は、aタグの機能を無効にするメソッドです。
 });
